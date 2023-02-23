@@ -8,9 +8,11 @@ export const CardContainer = styled.div`
   justify-content: space-around;
   column-gap: 15px;
 
-  background-color: #f7f2f4;
+  background-color: #F5F5DC;
   border-radius: 5px;
 `;
+
+//#f7f2f4
 
 export const ImageContainer = styled.div`
   flex: 0 0 30%;
@@ -42,8 +44,7 @@ export const CategoryTag = styled.div`
   margin-top: 5px;
   margin-bottom: 15px;
 
-  background-color: #787576;
-  color: white;
+  background-color: #FFFAF0;
 `;
 
 export const InfoUnit = styled.div`
