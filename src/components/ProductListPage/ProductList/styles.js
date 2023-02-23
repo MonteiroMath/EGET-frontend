@@ -1,10 +1,8 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+  padding: 20px;
   display: flex;
-  height: 100%;
   flex-direction: column;
-  row-gap: 15px;
-  align-items: center;
-  justify-content: center;
+  row-gap: 20px;
 `;

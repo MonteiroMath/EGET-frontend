@@ -1,11 +1,9 @@
 import { Container } from "./styles.js";
-import { Link } from "react-router-dom";
+import ProductCard from "./ProductCard/ProductCard";
 
 function ProductList({ products }) {
   const productItems = products.map((product) => (
-    <Link key={`product-${product.id}`} to={`/products/${product.id}`}>
-      {product.name}
-    </Link>
+    <ProductCard product={product} />
   ));
 
   return (
@@ -16,3 +14,9 @@ function ProductList({ products }) {
 }
 
 export default ProductList;
+
+/*
+<Link key={`product-${product.id}`} to={`/products/${product.id}`}>
+      {product.name}
+    </Link>
+*/
