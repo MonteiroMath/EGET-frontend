@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { fetchProducts, selectAllProducts } from "../../store/productSlice";
 
 function ProductListPage() {
@@ -11,7 +12,9 @@ function ProductListPage() {
   }, [dispatch]);
 
   const productItems = productList.map((product) => (
-    <div key={product.id}>{product.name}</div>
+    <Link key={product.id} to={`/products/${product.id}`}>
+      {product.name}
+    </Link>
   ));
 
   return (
