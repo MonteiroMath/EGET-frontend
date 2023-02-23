@@ -17,7 +17,7 @@ export const HeroHeader = styled.header`
 `;
 
 const HeaderContainer = styled.div`
-  padding: 25px;
+  padding: 25px 35px;
   background: rgba(0, 0, 0, 50%);
   font-weight: bold;
 `;
@@ -35,9 +35,11 @@ export const HeaderTitle = styled(HeaderContainer)`
     margin-right: 20vw;
   }
 
-  @media screen and (min-width: 1200px) {
-    margin-right: 10vw;
+  @media screen and (min-width: 992px) {
+    font-size: 34px;
   }
+
+
 `;
 
 export const HeaderSubtitle = styled(HeaderContainer)`
@@ -46,6 +48,10 @@ export const HeaderSubtitle = styled(HeaderContainer)`
 
   @media screen and (min-width: 576px) {
     align-self: center;
+  }
+
+  @media screen and (min-width: 992px) {
+    font-size: 28px;
   }
 `;
 
@@ -102,6 +108,10 @@ export const InfoCardText = styled.p`
   @media screen and (min-width: 576px) {
     font-size: 24px;
     order: 2;
+  }
+
+  @media screen and (min-width: 992px) {
+    font-size: 32px;
   }
 `;
 
