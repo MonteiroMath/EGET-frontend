@@ -1,11 +1,11 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Navbar from "./components/Shared/Navbar/Navbar";
-
 import HomePage from "./components/HomePage/HomePage";
 import ProductListPage from "./components/ProductListPage/ProductListPage";
 import ProductPage from "./components/ProductPage/ProductPage";
 import AddProductPage from "./components/AddProductPage/AddProductPage";
+import Footer from "./components/Shared/Footer/Footer";
 
 function App() {
   return (
@@ -21,6 +21,7 @@ function App() {
 
           <Route exact path="/addProduct" element={<AddProductPage />} />
         </Routes>
+        <Footer />
       </Router>
     </>
   );
