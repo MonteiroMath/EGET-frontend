@@ -1,5 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
+import { Container } from "./styles";
+
 import Navbar from "./components/Shared/Navbar/Navbar";
 import HomePage from "./components/HomePage/HomePage";
 import ProductListPage from "./components/ProductListPage/ProductListPage";
@@ -11,17 +13,19 @@ function App() {
   return (
     <>
       <Router>
-        <Navbar />
-        <Routes>
-          <Route exact path="/" element={<HomePage />} />
+        <Container>
+          <Navbar />
+          <Routes>
+            <Route exact path="/" element={<HomePage />} />
 
-          <Route exact path="/products" element={<ProductListPage />} />
+            <Route exact path="/products" element={<ProductListPage />} />
 
-          <Route exact path="/products/:id" element={<ProductPage />} />
+            <Route exact path="/products/:id" element={<ProductPage />} />
 
-          <Route exact path="/addProduct" element={<AddProductPage />} />
-        </Routes>
-        <Footer />
+            <Route exact path="/addProduct" element={<AddProductPage />} />
+          </Routes>
+          <Footer />
+        </Container>
       </Router>
     </>
   );

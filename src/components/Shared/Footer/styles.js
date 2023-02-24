@@ -5,6 +5,8 @@ export const StyledFooter = styled.footer`
 
   background: rgba(0, 0, 0, 70%);
   color: white;
+
+  margin-top: auto;
 `;
 
 export const BoldText = styled.div`
