@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const IconContainer = styled.div`
-  flex: 0 0 5px;
+  flex: 0 0 25px;
   width: 20px;
 
   cursor: pointer;
