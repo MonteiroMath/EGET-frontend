@@ -1,8 +1,12 @@
 import { useState, useCallback } from "react";
-
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { postProduct } from "../../../store/productSlice";
 import { StyledForm, FormGroup, ButtonContainer } from "./styles";
 
 function NewProductForm() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [formState, setFormState] = useState({
     name: { value: "", valid: "" },
     category: { value: "", valid: "" },
@@ -13,11 +17,23 @@ function NewProductForm() {
   });
 
   const handleFormChange = useCallback((key) => (event) => {
-    const value = key === "termos" ? event.target.checked : event.target.value;
-
     setFormState((prev) => {
-      return { ...prev, [key]: { value, valid: "" } };
+      return { ...prev, [key]: { value: event.target.value, valid: "" } };
     });
+  });
+
+  const handleSubmit = useCallback((event) => {
+    event.preventDefault();
+
+    dispatch(
+      postProduct({
+        name: formState.name.value,
+        category: formState.category.value,
+        description: formState.description.value,
+        price: parseFloat(formState.price.value),
+        quantity: parseInt(formState.quantity.value),
+      })
+    ).then(() => navigate("/products"));
   });
 
   return (
@@ -90,7 +106,7 @@ function NewProductForm() {
       </FormGroup>
       <ButtonContainer>
         <button>Cancelar</button>
-        <button>Cadastrar</button>
+        <button onClick={handleSubmit}>Cadastrar</button>
       </ButtonContainer>
     </StyledForm>
   );
