@@ -1,5 +1,13 @@
+import { BodyContainer, Title } from "./styles";
+import NewProductForm from "./NewProductForm/NewProductForm";
+
 function AddProductPage() {
-  return <div>Add Product Page</div>;
+  return (
+    <BodyContainer>
+      <Title>Cadastrar Produto</Title>
+      <NewProductForm />
+    </BodyContainer>
+  );
 }
 
 export default AddProductPage;
