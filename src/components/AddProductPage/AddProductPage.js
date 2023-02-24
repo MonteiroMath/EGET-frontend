@@ -1,11 +1,11 @@
 import { BodyContainer, Title } from "./styles";
 import NewProductForm from "./NewProductForm/NewProductForm";
 
-function AddProductPage() {
+function AddProductPage({ edit }) {
   return (
     <BodyContainer>
-      <Title>Cadastrar Produto</Title>
-      <NewProductForm />
+      <Title>{edit ? "Editar Produto" : "Cadastrar Produto"}</Title>
+      <NewProductForm edit={edit} />
     </BodyContainer>
   );
 }

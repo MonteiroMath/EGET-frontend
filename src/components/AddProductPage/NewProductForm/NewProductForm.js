@@ -1,8 +1,13 @@
 import { useState, useCallback } from "react";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
 import validator from "validator";
-import { postProduct } from "../../../store/productSlice";
+import {
+  postProduct,
+  updateProduct,
+  selectProductById,
+} from "../../../store/productSlice";
+
 import {
   StyledForm,
   FormGroup,
@@ -10,17 +15,38 @@ import {
   ErrorContainer,
 } from "./styles";
 
-function NewProductForm() {
+function NewProductForm({ edit }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [formState, setFormState] = useState({
-    name: { value: "", valid: "" },
-    category: { value: "", valid: "" },
-    price: { value: "", valid: "" },
-    quantity: { value: "", valid: "" },
-    description: { value: "", valid: "" },
-    image: { value: "", valid: "" },
-  });
+
+  const params = useParams();
+  const { id } = params;
+
+  const product = useSelector((state) =>
+    selectProductById(state, parseInt(id))
+  );
+
+  const defaultState = edit
+    ? {
+        name: { value: product.name, valid: true },
+        category: { value: product.category, valid: true },
+        price: { value: product.price, valid: true },
+        quantity: { value: product.quantity, valid: true },
+        description: { value: product.description, valid: true },
+        image: { value: product.name, valid: true },
+      }
+    : {
+        name: { value: "", valid: "" },
+        category: { value: "", valid: "" },
+        price: { value: "", valid: "" },
+        quantity: { value: "", valid: "" },
+        description: { value: "", valid: "" },
+        image: { value: "", valid: "" },
+      };
+
+  const [formState, setFormState] = useState(defaultState);
+
+  const action = edit ? updateProduct : postProduct;
 
   const validate = {
     name: (value) => validator.isAlphanumeric(value, "pt-BR", { ignore: " " }),
@@ -34,7 +60,6 @@ function NewProductForm() {
   const handleFormChange = useCallback((key) => (event) => {
     const value = event.target.value;
 
-    console.log(value);
     setFormState((prev) => {
       return { ...prev, [key]: { value, valid: validate[key](value) } };
     });
@@ -59,7 +84,8 @@ function NewProductForm() {
     event.preventDefault();
 
     dispatch(
-      postProduct({
+      action({
+        id,
         name: formState.name.value,
         category: formState.category.value,
         description: formState.description.value,
@@ -164,7 +190,7 @@ function NewProductForm() {
       <ButtonContainer>
         <button onClick={handleReturn}>Cancelar</button>
         <button disabled={!isButtonEnabled()} onClick={handleSubmit}>
-          Cadastrar
+          Confirmar
         </button>
       </ButtonContainer>
     </StyledForm>

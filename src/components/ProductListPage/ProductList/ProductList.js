@@ -3,7 +3,7 @@ import ProductCard from "./ProductCard/ProductCard";
 
 function ProductList({ products }) {
   const productItems = products.map((product) => (
-    <ProductCard product={product} />
+    <ProductCard key={`product-${product.id}`} product={product} />
   ));
 
   return (

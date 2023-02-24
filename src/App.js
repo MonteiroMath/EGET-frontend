@@ -24,7 +24,11 @@ function App() {
 
             <Route exact path="/addProduct" element={<AddProductPage />} />
 
-            <Route exact path="/edit/:id" element={<AddProductPage />} />
+            <Route
+              exact
+              path="/edit/:id"
+              element={<AddProductPage edit={true} />}
+            />
           </Routes>
           <Footer />
         </Container>
