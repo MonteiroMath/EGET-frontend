@@ -1,5 +1,8 @@
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+
+import { deleteProduct } from "../../../../store/productSlice";
 
 import SeeMoreButton from "../../../Shared/Buttons/SeeMoreButton/SeeMoreButton";
 import EditButton from "../../../Shared/Buttons/EditButton/EditButton";
@@ -17,11 +20,13 @@ import {
 
 function ProductCard({ product }) {
   const { id, name, category, price } = product;
+
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleSeeMore = useCallback(() => navigate(`/products/${id}`));
   const handleEdit = useCallback(() => navigate(`/edit/${id}`));
-  //implement handleDelete - confirmation popup?
+  const handleDelete = useCallback(() => dispatch(deleteProduct({ id })));
 
   return (
     <CardContainer>
@@ -36,7 +41,7 @@ function ProductCard({ product }) {
       <ButtonsContainer>
         <SeeMoreButton handleClick={handleSeeMore} />
         <EditButton handleClick={handleEdit} />
-        <DeleteButton handleClick={() => console.log("todo")} />
+        <DeleteButton handleClick={handleDelete} />
       </ButtonsContainer>
     </CardContainer>
   );
