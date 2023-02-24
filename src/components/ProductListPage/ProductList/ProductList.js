@@ -14,9 +14,3 @@ function ProductList({ products }) {
 }
 
 export default ProductList;
-
-/*
-<Link key={`product-${product.id}`} to={`/products/${product.id}`}>
-      {product.name}
-    </Link>
-*/

@@ -22,6 +22,11 @@ function NewProductForm() {
     });
   });
 
+  const handleReturn = useCallback((event) => {
+    event.preventDefault();
+    navigate("/products");
+  });
+
   const handleSubmit = useCallback((event) => {
     event.preventDefault();
 
@@ -105,7 +110,7 @@ function NewProductForm() {
         />
       </FormGroup>
       <ButtonContainer>
-        <button>Cancelar</button>
+        <button onClick={handleReturn}>Cancelar</button>
         <button onClick={handleSubmit}>Cadastrar</button>
       </ButtonContainer>
     </StyledForm>
