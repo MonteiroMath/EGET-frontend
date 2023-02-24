@@ -27,6 +27,10 @@ export const FormGroup = styled.div`
   }
 `;
 
+export const ErrorContainer = styled.div`
+  color: red;
+`;
+
 export const ButtonContainer = styled.div`
   margin-top: 30px;
   display: flex;
