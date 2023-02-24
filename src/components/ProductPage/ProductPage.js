@@ -6,11 +6,12 @@ function ProductPage() {
   let { id } = useParams();
   let product = useSelector((state) => selectProductById(state, parseInt(id)));
 
+  const { name, category, price, quantity, description } = product;
   return (
     <div>
       <div>{id}</div>
-      <div>{product.name}</div>
-      <div>{product.price}</div>
+      <div>{name}</div>
+      <div>{price}</div>
     </div>
   );
 }

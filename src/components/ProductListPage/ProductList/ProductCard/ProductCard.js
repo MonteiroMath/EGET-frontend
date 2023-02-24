@@ -1,6 +1,10 @@
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 
+import SeeMoreButton from "../../../Shared/Buttons/SeeMoreButton/SeeMoreButton";
+import EditButton from "../../../Shared/Buttons/EditButton/EditButton";
+import DeleteButton from "../../../Shared/Buttons/DeleteButton/DeleteButton";
+
 import {
   CardContainer,
   ImageContainer,
@@ -9,12 +13,7 @@ import {
   CategoryTag,
   InfoUnit,
   ButtonsContainer,
-  IconContainer,
 } from "./styles";
-
-import plusIcon from "./img/plus.png";
-import editIcon from "./img/edit.png";
-import deleteIcon from "./img/delete.png";
 
 function ProductCard({ product }) {
   const { id, name, category, price } = product;
@@ -35,15 +34,9 @@ function ProductCard({ product }) {
         <InfoUnit>R${price.toFixed(2)}</InfoUnit>
       </InfoContainer>
       <ButtonsContainer>
-        <IconContainer onClick={handleSeeMore}>
-          <FlexImg src={plusIcon} />
-        </IconContainer>
-        <IconContainer onClick={handleEdit}>
-          <FlexImg src={editIcon} />
-        </IconContainer>
-        <IconContainer>
-          <FlexImg src={deleteIcon} />
-        </IconContainer>
+        <SeeMoreButton handleClick={handleSeeMore} />
+        <EditButton handleClick={handleEdit} />
+        <DeleteButton handleClick={() => console.log("todo")} />
       </ButtonsContainer>
     </CardContainer>
   );
