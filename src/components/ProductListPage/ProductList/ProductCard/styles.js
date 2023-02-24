@@ -1,25 +1,37 @@
 import styled from "styled-components";
 
 export const CardContainer = styled.div`
-  height: 125px;
-  padding: 10px 5px;
+  min-height: 125px;
+  width: 90%;
+
+  padding: 10px 15px;
 
   display: flex;
   justify-content: space-around;
   column-gap: 15px;
 
-  background-color: #F5F5DC;
+  background-color: #f5f5dc;
   border-radius: 5px;
+
+  @media screen and (min-width: 992px) {
+    width: 75%;
+  }
 `;
 
 //#f7f2f4
 
 export const ImageContainer = styled.div`
-  flex: 0 0 30%;
+  display: none;
 
-  display: flex;
-  align-items: flex-start;
-  margin-top: 15px;
+  @media screen and (min-width: 768px) {
+    flex: 0 0 28%;
+
+    max-width: 115px;
+
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+  }
 `;
 
 export const FlexImg = styled.img`
@@ -29,22 +41,32 @@ export const FlexImg = styled.img`
 export const InfoContainer = styled.div`
   flex: 1;
 
+  text-align: center;
   font-weight: bold;
+
+  @media screen and (min-width: 768px) {
+    text-align: left;
+  }
 `;
 
 export const CategoryTag = styled.div`
-  width: 40%;
+  max-width: 33%;
   padding: 5px 10px;
+  overflow: hidden;
 
   border: solid 1px black;
   border-radius: 5px 10px;
 
   text-align: center;
 
-  margin-top: 5px;
-  margin-bottom: 15px;
+  margin: 5px auto 15px auto;
 
-  background-color: #FFFAF0;
+  background-color: #fffaf0;
+
+  @media screen and (min-width: 768px) {
+    margin-left: 0;
+    margin-right: 0;
+  }
 `;
 
 export const InfoUnit = styled.div`
@@ -52,8 +74,6 @@ export const InfoUnit = styled.div`
 `;
 
 export const ButtonsContainer = styled.div`
-  margin-right: 15px;
-
   display: flex;
   flex-direction: column;
   justify-content: space-around;
