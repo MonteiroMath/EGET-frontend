@@ -13,7 +13,7 @@ function ProductListPage() {
   const productList = useSelector(selectAllProducts);
 
   const [searchParams] = useSearchParams();
-  const searchTerm = searchParams.get("searchTerm");
+  const searchTerm = searchParams.toString();
 
   //extract effect as custom hook
   useEffect(() => {

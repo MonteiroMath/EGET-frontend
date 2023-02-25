@@ -20,17 +20,18 @@ function parseQuery(searchTerm) {
   const processedQuery = {};
 
   if (bufferQuery.length === 1 && !bufferQuery[0].includes(":")) {
-    processedQuery["name"] = bufferQuery[0];
+    processedQuery["name"] = bufferQuery[0].trim();
   } else {
     bufferQuery.forEach((term) => {
-      const [key, value] = term.split(":");
+      let [key, value] = term.split(":");
 
+      key = key.trim();
       if (
         value &&
         validKeys.includes(key) &&
         !processedQuery.hasOwnProperty(key)
       ) {
-        processedQuery[key] = value;
+        processedQuery[key] = value.trim();
       }
     });
   }

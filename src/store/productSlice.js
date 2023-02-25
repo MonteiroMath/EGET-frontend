@@ -9,10 +9,8 @@ const initialState = {
 
 export const fetchProducts = createAsyncThunk(
   "products/fetch",
-  async (searchTerm) => {
-    const response = await client.get(
-      searchTerm ? `/?searchTerm=${searchTerm}` : "/"
-    );
+  async (query) => {
+    const response = await client.get(query ? `/?${query}` : "/");
     return response;
   }
 );
