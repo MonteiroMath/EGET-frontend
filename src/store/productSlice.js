@@ -96,11 +96,7 @@ const productsSlice = createSlice({
       .addCase(deleteProduct.fulfilled, (state, action) => {
         const { productId } = action.payload;
 
-        let productIndex = state.data.findIndex(
-          (product) => product.id === productId
-        );
-
-        state.data.splice(productIndex, 1);
+        state.data = state.data.filter((product) => product.id != productId);
       })
       .addMatcher(isActionRejected, (state, action) => {
         console.log(action.error.message);
@@ -118,7 +114,8 @@ export const actions = productsSlice.actions;
 export const selectProductById = (state, id) =>
   state.products.data.find((product) => product.id === id);
 export const selectAllProducts = (state) => {
-  return state.products.data;
+  console.log(state.products.data);
+  return [...state.products.data];
 };
 export const selectStatus = (state) => {
   return state.products.status;

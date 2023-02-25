@@ -25,11 +25,10 @@ function ProductListPage() {
   //extract effect as custom hook
   useEffect(() => {
     dispatch(fetchProducts(searchTerm));
-  }, [dispatch, searchTerm]);
+  }, [searchTerm]);
 
   const handleAddProduct = useCallback(() => navigate("/addProduct"));
 
-  
   return (
     <BodyContainer>
       <SearchBar />
