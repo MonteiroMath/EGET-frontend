@@ -57,9 +57,10 @@ export const Title = styled.div`
 
 export const InfoUnit = styled.div`
   margin-top: 5px;
-  font-size: 16px;
+  font-size: 18px;
   text-align: center;
 
+  font-weight: bold;
   @media screen and (min-width: 576px) {
     text-align: left;
   }
@@ -67,10 +68,11 @@ export const InfoUnit = styled.div`
 
 export const DescriptionBox = styled.div`
   margin-top: 40px;
-  font-size: 14px;
+  font-size: 16px;
   text-align: left;
   padding-left: 25px;
 
+  font-weight: bold;
   @media screen and (min-width: 576px) {
     padding-left: 0;
   }

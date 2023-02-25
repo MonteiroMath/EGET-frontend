@@ -10,14 +10,16 @@ export const CardContainer = styled.div`
   justify-content: space-around;
   column-gap: 15px;
 
-  background-color: #f5f5dc;
-  border-radius: 5px;
+  background-color: #80669d;
+  color: white;
+  border: solid 1px #eee;
+  border-radius: 10px;
 
   @media screen and (min-width: 992px) {
     width: 75%;
   }
 `;
-
+//#f5f5dc
 //#f7f2f4
 
 export const ImageContainer = styled.div`
@@ -54,14 +56,14 @@ export const CategoryTag = styled.div`
   padding: 5px 10px;
   overflow: hidden;
 
-  border: solid 1px black;
+  border: none;
   border-radius: 5px 10px;
 
   text-align: center;
 
   margin: 5px auto 15px auto;
 
-  background-color: #fffaf0;
+  background-color: #c39cf0;
 
   @media screen and (min-width: 768px) {
     margin-left: 0;

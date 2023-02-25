@@ -118,3 +118,6 @@ export const selectProductById = (state, id) =>
 export const selectAllProducts = (state) => {
   return state.products.data;
 };
+export const selectStatus = (state) => {
+  return state.products.status;
+};

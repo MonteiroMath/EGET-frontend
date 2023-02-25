@@ -1,4 +1,10 @@
-import { ModalBody, ModalContainer, ModalContent, ModalFooter } from "./styles";
+import {
+  ModalBody,
+  ModalContainer,
+  ModalContent,
+  ModalFooter,
+  StyledButton,
+} from "./styles";
 
 function Modal({ show, handleClose, content, handleConfirm }) {
   return show ? (
@@ -6,8 +12,8 @@ function Modal({ show, handleClose, content, handleConfirm }) {
       <ModalBody>
         <ModalContent>{content}</ModalContent>
         <ModalFooter>
-          <button onClick={handleClose}>Cancelar</button>
-          <button onClick={handleConfirm}>Confirmar</button>
+          <StyledButton onClick={handleClose}>Cancelar</StyledButton>
+          <StyledButton onClick={handleConfirm}>Confirmar</StyledButton>
         </ModalFooter>
       </ModalBody>
     </ModalContainer>

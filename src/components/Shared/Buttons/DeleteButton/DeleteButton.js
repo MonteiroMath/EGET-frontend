@@ -1,9 +1,12 @@
-import deleteIcon from "./img/delete.png";
-
+import { AiOutlineDelete } from "react-icons/ai";
 import IconButton from "../IconButton/IconButton";
 
 function DeleteButton({ handleClick }) {
-  return <IconButton icon={deleteIcon} handleClick={handleClick} />;
+  return (
+    <IconButton handleClick={handleClick}>
+      <AiOutlineDelete size={24} />
+    </IconButton>
+  );
 }
 
 export default DeleteButton;

@@ -11,7 +11,9 @@ import {
 import {
   StyledForm,
   FormGroup,
+  StyledInput,
   ButtonContainer,
+  StyledButton,
   ErrorContainer,
 } from "./styles";
 
@@ -99,7 +101,7 @@ function NewProductForm({ edit }) {
     <StyledForm>
       <FormGroup>
         <label for="name">Nome*:</label>
-        <input
+        <StyledInput
           id="name"
           name="name"
           placeholder="Ex: Moto G"
@@ -115,7 +117,7 @@ function NewProductForm({ edit }) {
 
       <FormGroup>
         <label for="category">Categoria*:</label>
-        <input
+        <StyledInput
           id="category"
           name="category"
           placeholder="Ex: celulares"
@@ -131,7 +133,7 @@ function NewProductForm({ edit }) {
 
       <FormGroup>
         <label for="price">Preço*:</label>
-        <input
+        <StyledInput
           id="price"
           name="price"
           placeholder="Ex: 59.99"
@@ -146,7 +148,7 @@ function NewProductForm({ edit }) {
       </FormGroup>
       <FormGroup>
         <label for="quantity">Quantidade*:</label>
-        <input
+        <StyledInput
           id="quantity"
           name="quantity"
           placeholder="Ex: 300"
@@ -161,7 +163,7 @@ function NewProductForm({ edit }) {
       </FormGroup>
       <FormGroup>
         <label for="description">Descrição*:</label>
-        <input
+        <StyledInput
           type="text"
           id="description"
           name="description"
@@ -175,7 +177,7 @@ function NewProductForm({ edit }) {
       </FormGroup>
       <FormGroup>
         <label for="image">Imagem*:</label>
-        <input
+        <StyledInput
           type="url"
           id="image"
           name="image"
@@ -188,10 +190,10 @@ function NewProductForm({ edit }) {
         )}
       </FormGroup>
       <ButtonContainer>
-        <button onClick={handleReturn}>Cancelar</button>
-        <button disabled={!isButtonEnabled()} onClick={handleSubmit}>
+        <StyledButton onClick={handleReturn}>Cancelar</StyledButton>
+        <StyledButton disabled={!isButtonEnabled()} onClick={handleSubmit}>
           Confirmar
-        </button>
+        </StyledButton>
       </ButtonContainer>
     </StyledForm>
   );

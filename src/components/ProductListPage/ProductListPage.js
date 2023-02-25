@@ -1,15 +1,22 @@
 import { useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { fetchProducts, selectAllProducts } from "../../store/productSlice";
+import {
+  fetchProducts,
+  selectAllProducts,
+  selectStatus,
+} from "../../store/productSlice";
 import SearchBar from "./SearchBar/SearchBar";
+import Loading from "../Shared/Loading/Loading";
 import ProductList from "./ProductList/ProductList";
+import NoProducts from "./ProductList/NoProducts/NoProducts";
 
-import { BodyContainer } from "./styles.js";
+import { BodyContainer, StyledButton } from "./styles.js";
 
 function ProductListPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const status = useSelector(selectStatus);
   const productList = useSelector(selectAllProducts);
 
   const [searchParams] = useSearchParams();
@@ -22,11 +29,14 @@ function ProductListPage() {
 
   const handleAddProduct = useCallback(() => navigate("/addProduct"));
 
+  
   return (
     <BodyContainer>
       <SearchBar />
-      <button onClick={handleAddProduct}>Cadastrar Produto</button>
-      <ProductList products={productList} />
+      <StyledButton onClick={handleAddProduct}>Cadastrar Produto</StyledButton>
+      {status == "pending" && <Loading />}
+      {status == "fulfilled" && productList.length == 0 && <NoProducts />}
+      {status == "fulfilled" && <ProductList products={productList} />}
     </BodyContainer>
   );
 }

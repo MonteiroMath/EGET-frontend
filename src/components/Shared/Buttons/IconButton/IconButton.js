@@ -1,11 +1,7 @@
-import { FlexImg, IconContainer } from "./styles";
+import { IconContainer } from "./styles";
 
-function IconButton({ icon, handleClick }) {
-  return (
-    <IconContainer onClick={handleClick}>
-      <FlexImg src={icon} />
-    </IconContainer>
-  );
+function IconButton({ handleClick, children }) {
+  return <IconContainer onClick={handleClick}>{children}</IconContainer>;
 }
 
 export default IconButton;

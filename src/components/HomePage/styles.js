@@ -38,8 +38,6 @@ export const HeaderTitle = styled(HeaderContainer)`
   @media screen and (min-width: 992px) {
     font-size: 34px;
   }
-
-
 `;
 
 export const HeaderSubtitle = styled(HeaderContainer)`
@@ -57,6 +55,8 @@ export const HeaderSubtitle = styled(HeaderContainer)`
 
 export const BodyContainer = styled.main`
   padding: 8vh 5vw 8vh 5vw;
+  background-color: #c39cf0;
+  color: white;
 `;
 
 export const InfoCard = styled.section`

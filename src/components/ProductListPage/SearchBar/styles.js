@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  padding: 50px 0;
+  padding: 30px 0;
 
   border-bottom: 2px solid #eee;
   margin-bottom: 30px;
@@ -14,7 +14,7 @@ export const StyledForm = styled.form`
 
 export const StyledInput = styled.input`
   width: 60%;
-  height: 30px;
+  height: 20px;
   padding: 5px;
   border-radius: 5px;
   border: solid 2px #eee;
