@@ -7,10 +7,15 @@ const initialState = {
   data: [],
 };
 
-export const fetchProducts = createAsyncThunk("products/fetch", async () => {
-  const response = await client.get(`/`);
-  return response;
-});
+export const fetchProducts = createAsyncThunk(
+  "products/fetch",
+  async (searchTerm) => {
+    const response = await client.get(
+      searchTerm ? `/?searchTerm=${searchTerm}` : "/"
+    );
+    return response;
+  }
+);
 
 export const postProduct = createAsyncThunk("products/post", async (params) => {
   const { name, category, description, price, quantity } = params;

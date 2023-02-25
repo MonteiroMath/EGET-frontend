@@ -1,7 +1,8 @@
 import { useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { fetchProducts, selectAllProducts } from "../../store/productSlice";
+import SearchBar from "./SearchBar/SearchBar";
 import ProductList from "./ProductList/ProductList";
 
 import { BodyContainer } from "./styles.js";
@@ -11,16 +12,19 @@ function ProductListPage() {
   const navigate = useNavigate();
   const productList = useSelector(selectAllProducts);
 
+  const [searchParams] = useSearchParams();
+  const searchTerm = searchParams.get("searchTerm");
+
   //extract effect as custom hook
   useEffect(() => {
-    dispatch(fetchProducts());
-  }, [dispatch]);
+    dispatch(fetchProducts(searchTerm));
+  }, [dispatch, searchTerm]);
 
   const handleAddProduct = useCallback(() => navigate("/addProduct"));
 
   return (
     <BodyContainer>
-      <div>searchBar</div>
+      <SearchBar />
       <button onClick={handleAddProduct}>Cadastrar Produto</button>
       <ProductList products={productList} />
     </BodyContainer>
