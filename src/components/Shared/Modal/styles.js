@@ -27,6 +27,7 @@ export const ModalContent = styled.div`
 
   border-top: 1px solid #eee;
   border-bottom: 1px solid #eee;
+  white-space: pre-line;
 `;
 
 export const ModalFooter = styled.div`

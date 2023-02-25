@@ -12,8 +12,10 @@ function Modal({ show, handleClose, content, handleConfirm }) {
       <ModalBody>
         <ModalContent>{content}</ModalContent>
         <ModalFooter>
-          <StyledButton onClick={handleClose}>Cancelar</StyledButton>
-          <StyledButton onClick={handleConfirm}>Confirmar</StyledButton>
+          <StyledButton onClick={handleClose}>Voltar</StyledButton>
+          {handleConfirm && (
+            <StyledButton onClick={handleConfirm}>Confirmar</StyledButton>
+          )}
         </ModalFooter>
       </ModalBody>
     </ModalContainer>

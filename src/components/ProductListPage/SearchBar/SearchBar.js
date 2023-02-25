@@ -1,6 +1,8 @@
 import { useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import { Container, StyledForm, StyledInput } from "./styles";
+import { Container, StyledForm, StyledInput, HelpButton } from "./styles";
+
+import Modal from "../../Shared/Modal/Modal";
 
 function parseQuery(searchTerm) {
   /* 
@@ -39,10 +41,23 @@ function parseQuery(searchTerm) {
   return new URLSearchParams(processedQuery).toString();
 }
 
+const modalContent = `-  Exemplos:\n
+    nomeProduto - busca por nome
+    name:nomeProduto - busca por nome - prefixo obrigatório em caso de busca com mais de um critério.
+    cat:eletronicos - busca por categoria.
+    min:4.99 - Preço mínimo da busca.
+    max:50.00 - Preço máximo da busca.
+    name: motorola; cat: eletronicos; min: 4.99 - Busca com múltiplos critérios deve usar o separador ";".`;
+
 function SearchBar() {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
+  const [showModal, setShowModal] = useState("");
 
+  const handleShowModal = useCallback(
+    () => setShowModal(!showModal),
+    [showModal]
+  );
   const handleChange = useCallback((ev) => setSearchTerm(ev.target.value));
 
   const handleSubmit = useCallback(
@@ -59,36 +74,25 @@ function SearchBar() {
   );
 
   return (
-    <Container>
-      <StyledForm>
-        <StyledInput
-          placeholder="O que você procura?"
-          value={searchTerm}
-          onChange={handleChange}
-          onKeyDown={handleSubmit}
-        />
-      </StyledForm>
-    </Container>
+    <>
+      <Container>
+        <StyledForm>
+          <StyledInput
+            placeholder="O que você procura?"
+            value={searchTerm}
+            onChange={handleChange}
+            onKeyDown={handleSubmit}
+          />
+        </StyledForm>
+        <HelpButton onClick={handleShowModal}>?</HelpButton>
+      </Container>
+      <Modal
+        show={showModal}
+        handleClose={handleShowModal}
+        content={modalContent}
+      />
+    </>
   );
 }
 
 export default SearchBar;
-
-/*
-
-<Form.Control
-    className={styles.form}
-    type="text"
-    placeholder="O que você procura?"
-    value={searchTerm}
-    onChange={(ev) => setSearchTerm(ev.target.value)}
-    onKeyDown={(ev) => {
-      if (ev.key === "Enter") {
-        ev.preventDefault();
-        ev.stopPropagation();
-        router.push(`/blog/search?searchTerm=${searchTerm}`);
-      }
-    }}
-  />
-
-*/
