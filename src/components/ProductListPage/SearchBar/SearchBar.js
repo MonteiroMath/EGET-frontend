@@ -20,7 +20,7 @@ function parseQuery(searchTerm) {
   const processedQuery = {};
 
   if (bufferQuery.length === 1 && !bufferQuery[0].includes(":")) {
-    processedQuery["name"] = bufferQuery[0].trim();
+    if (bufferQuery[0]) processedQuery["name"] = bufferQuery[0].trim();
   } else {
     bufferQuery.forEach((term) => {
       let [key, value] = term.split(":");
