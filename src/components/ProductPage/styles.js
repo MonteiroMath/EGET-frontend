@@ -15,6 +15,7 @@ export const FlexSection = styled.div`
   @media screen and (min-width: 576px) {
     display: flex;
     justify-content: space-around;
+    column-gap: 25px;
   }
 `;
 export const ImageContainer = styled.div`
@@ -71,6 +72,7 @@ export const DescriptionBox = styled.div`
   font-size: 16px;
   text-align: left;
   padding-left: 25px;
+  padding-right: 25px;
 
   font-weight: bold;
   @media screen and (min-width: 576px) {

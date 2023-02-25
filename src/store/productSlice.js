@@ -16,7 +16,7 @@ export const fetchProducts = createAsyncThunk(
 );
 
 export const postProduct = createAsyncThunk("products/post", async (params) => {
-  const { name, category, description, price, quantity } = params;
+  const { name, category, description, price, quantity, image } = params;
 
   const response = await client.post("/", {
     name,
@@ -24,6 +24,7 @@ export const postProduct = createAsyncThunk("products/post", async (params) => {
     description,
     price,
     quantity,
+    image,
   });
 
   return response;
@@ -32,7 +33,7 @@ export const postProduct = createAsyncThunk("products/post", async (params) => {
 export const updateProduct = createAsyncThunk(
   "products/Update",
   async (params) => {
-    const { id, name, category, description, price, quantity } = params;
+    const { id, name, category, description, price, quantity, image } = params;
 
     const response = await client.put(`/${id}`, {
       name,
@@ -40,6 +41,7 @@ export const updateProduct = createAsyncThunk(
       description,
       price,
       quantity,
+      image,
     });
 
     return response;

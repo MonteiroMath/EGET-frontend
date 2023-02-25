@@ -3,6 +3,8 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectProductById } from "../../store/productSlice";
 
+import ProductPhImg from "../Shared/img/ph_product.jpg";
+
 import {
   BodyContainer,
   ButtonBar,
@@ -22,7 +24,7 @@ function ProductPage() {
   const product = useSelector((state) =>
     selectProductById(state, parseInt(id))
   );
-  const { name, category, price, quantity, description } = product;
+  const { name, price, quantity, description, image } = product;
 
   const navigate = useNavigate();
 
@@ -37,7 +39,13 @@ function ProductPage() {
       </ButtonBar>
       <FlexSection>
         <ImageContainer>
-          <FlexImg src="https://brmotorolanew.vtexassets.com/arquivos/ids/157347/Smartphone-Moto-G10-64-GB-foto-01.png?v=637522311518930000" />
+          <FlexImg
+            src={image}
+            onError={({ currentTarget }) => {
+              currentTarget.onerror = null;
+              currentTarget.src = ProductPhImg;
+            }}
+          />
         </ImageContainer>
         <InfoContainer>
           <Title>{name}</Title>

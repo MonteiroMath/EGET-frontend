@@ -41,6 +41,7 @@ export const StyledInput = styled.input`
 
 export const ErrorContainer = styled.div`
   color: red;
+  grid-column-end: span 2;
 `;
 
 export const ButtonContainer = styled.div`

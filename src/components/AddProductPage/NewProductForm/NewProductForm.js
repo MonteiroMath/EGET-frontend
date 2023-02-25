@@ -35,7 +35,7 @@ function NewProductForm({ edit }) {
         price: { value: product.price, valid: true },
         quantity: { value: product.quantity, valid: true },
         description: { value: product.description, valid: true },
-        image: { value: product.name, valid: true },
+        image: { value: product.image, valid: true },
       }
     : {
         name: { value: "", valid: "" },
@@ -52,7 +52,7 @@ function NewProductForm({ edit }) {
 
   const validate = {
     name: (value) => validator.isAlphanumeric(value, "pt-BR", { ignore: " " }),
-    category: (value) => validator.isAlpha(value),
+    category: (value) => validator.isAlpha(value, "pt-BR"),
     price: (value) => validator.isCurrency(value) && parseFloat(value) > 0,
     quantity: (value) => validator.isInt(value) && parseInt(value) > 0,
     description: (value) => !validator.isEmpty(value),
@@ -93,6 +93,7 @@ function NewProductForm({ edit }) {
         description: formState.description.value,
         price: parseFloat(formState.price.value),
         quantity: parseInt(formState.quantity.value),
+        image: formState.image.value,
       })
     ).then(() => navigate("/products"));
   });

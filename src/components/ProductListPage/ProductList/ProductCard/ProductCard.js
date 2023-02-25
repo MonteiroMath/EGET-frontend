@@ -1,6 +1,7 @@
 import { useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import ProductPhImg from "../../../Shared/img/ph_product.jpg";
 
 import { deleteProduct } from "../../../../store/productSlice";
 
@@ -20,7 +21,7 @@ import {
 } from "./styles";
 
 function ProductCard({ product }) {
-  const { id, name, category, price } = product;
+  const { id, name, category, price, image } = product;
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -36,7 +37,13 @@ function ProductCard({ product }) {
     <>
       <CardContainer>
         <ImageContainer>
-          <FlexImg src="https://brmotorolanew.vtexassets.com/arquivos/ids/157347/Smartphone-Moto-G10-64-GB-foto-01.png?v=637522311518930000" />
+          <FlexImg
+            src={image}
+            onError={({ currentTarget }) => {
+              currentTarget.onerror = null;
+              currentTarget.src = ProductPhImg;
+            }}
+          />
         </ImageContainer>
         <InfoContainer>
           <CategoryTag>{category}</CategoryTag>
