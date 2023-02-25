@@ -2,6 +2,42 @@ import { useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { Container, StyledForm, StyledInput } from "./styles";
 
+function parseQuery(searchTerm) {
+  /* 
+
+    quick cases:
+        moto - search for name
+        name:moto - search for name
+        cat:eletronicos - search for eletronics
+        min:4.99 - min price
+        max:50.00 - max price
+        name: moto; cat: eletronicos; min: 4.99 - multiple parameter search
+    */
+
+  const validKeys = ["name", "cat", "min", "max"];
+  let bufferQuery = searchTerm.trim().split(";");
+
+  const processedQuery = {};
+
+  if (bufferQuery.length === 1 && !bufferQuery[0].includes(":")) {
+    processedQuery["name"] = bufferQuery[0];
+  } else {
+    bufferQuery.forEach((term) => {
+      const [key, value] = term.split(":");
+
+      if (
+        value &&
+        validKeys.includes(key) &&
+        !processedQuery.hasOwnProperty(key)
+      ) {
+        processedQuery[key] = value;
+      }
+    });
+  }
+
+  return new URLSearchParams(processedQuery).toString();
+}
+
 function SearchBar() {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
@@ -13,7 +49,9 @@ function SearchBar() {
       if (ev.key === "Enter") {
         ev.preventDefault();
         ev.stopPropagation();
-        navigate(`/products?searchTerm=${searchTerm}`);
+
+        const query = parseQuery(searchTerm);
+        navigate(`/products?${query}`);
       }
     },
     [searchTerm]
