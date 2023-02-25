@@ -52,7 +52,7 @@ export const InfoContainer = styled.div`
 `;
 
 export const CategoryTag = styled.div`
-  max-width: 33%;
+  max-width: 80%;
   padding: 5px 10px;
   overflow: hidden;
 
