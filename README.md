@@ -86,7 +86,7 @@ A comunicação através de props e callback functions foi amplamente utilizada 
 
 Foi empregada renderização condicional em várias oportunidades. Cita-se como exemplo o componente [ProductListPage](https://github.com/MonteiroMath/EGET-frontend/blob/master/src/components/ProductListPage/ProductListPage.js).
 
-### -  Manipulação de Eventos
+### - Manipulação de Eventos
 
 Foram manipulados eventos em diversas oportunidades. Citam-se como exemplos (lista não exaustiva):
 
@@ -125,6 +125,10 @@ A aplicação foi desenvolvida de maneira responsiva.
 Implementou-se filtro para busca de produtos por várias propriedades ao mesmo tempo, o que pode ser verificado no componente [SearchBar](https://github.com/MonteiroMath/EGET-frontend/blob/master/src/components/ProductListPage/SearchBar/SearchBar.js) e no arquivo [parseQuery.js](https://github.com/MonteiroMath/EGET-frontend/blob/master/src/components/ProductListPage/SearchBar/utils/parseQuery.js)
 
 ### - Jest e Enzyme
+
+Não foram implementados testes usando Enzyme em razão de incomptabilidade com a versão utilizada de React (React 18).
+
+No entanto, como demonstração, foram implementados testes utilizando JEST e react-testing-library nos arquivos [ProductListPage.test.js](https://github.com/MonteiroMath/EGET-frontend/blob/master/src/components/ProductListPage/ProductListPage.test.js) e [AddProductPage.test.js](https://github.com/MonteiroMath/EGET-frontend/blob/master/src/components/AddProductPage/AddProductPage.test.js).
 
 ### - Hospedagem na nuvem
 
