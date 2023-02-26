@@ -6,6 +6,8 @@ O aplicativo faz uso de um backend construído em ExpressJS sobre um banco de da
 
 O backend está sendo executando temporariamente em um droplet da DigitalOcean e pode ser acessado clicando [aqui](http://159.89.178.109:8080). Caso o backend não funcione, é provável que ele tenha sido desativado após o resultado do teste.
 
+Quanto ao frontend, pode ser acessado clicando [aqui](http://159.89.178.109:9090). A hospedagem também está sendo feita em um droplet da DigitalOcean de forma temporária e será desativada dentro de alguns dias.
+
 ## Instruções para rodar a aplicação
 
 A aplicação foi desenvolvida em ambiente Linux (Ubuntu 20), utilizando NodeJS versão 18. Se necessário, siga as instruções para instalação do [NodeJS](https://nodejs.org/en/). Você também deverá ter o [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) instalado para seguir as instruções abaixo.
@@ -134,4 +136,4 @@ Embora a cobertura de testes tenha sido baixa, buscou-se ao menos exemplificar a
 
 ### - Hospedagem na nuvem
 
-Tanto o backend quanto o backend foram hospedados (temporariamente) em droplets da DigitalOcean, conforme links: [backend](http://159.89.178.109:8080) e [frontend](adicionar link)
+Tanto o backend quanto o backend foram hospedados (temporariamente) em droplets da DigitalOcean, conforme links: [backend](http://159.89.178.109:8080) e [frontend](http://159.89.178.109:9090).
