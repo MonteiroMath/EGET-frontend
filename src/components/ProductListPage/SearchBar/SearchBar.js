@@ -6,20 +6,25 @@ import SearchInstructionModal from "./SearchInstructionsModal/SearchInstructions
 import parseQuery from "./utils/parseQuery";
 
 function SearchBar({ handleSearch }) {
+  //Barra de busca
+
   const navigate = useNavigate();
 
+  //estado do formulário
   const [searchTerm, setSearchTerm] = useState("");
   const [showModal, setShowModal] = useState(false);
 
   const toggleModal = useCallback(() => setShowModal(!showModal), [showModal]);
   const handleChange = (ev) => setSearchTerm(ev.target.value);
 
+  //callback para submissão de busca quando o usuário pressionar enter
   const handleSubmit = useCallback(
     (ev) => {
       if (ev.key === "Enter") {
         ev.preventDefault();
         ev.stopPropagation();
 
+        //função para processamento dos termos de busca
         const query = parseQuery(searchTerm);
 
         handleSearch(query).then(navigate(`/products?${query}`));

@@ -1,6 +1,7 @@
 export async function client(endpoint, method, body) {
-  
-  const baseUrl = "http://159.89.178.109:8080";
+  //wraper sobre fetch para realizar chamadas à API.
+
+  const baseUrl = "http://159.89.178.109:8080"; //normalmente este valor seria definido usando um .env, mas foi hardcoded para facilitar a inicialização do app pelo avaliador
   const headers = { "Content-Type": "application/json" };
   const mode = "cors";
 

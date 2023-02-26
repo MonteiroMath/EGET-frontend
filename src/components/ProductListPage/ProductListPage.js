@@ -14,18 +14,27 @@ import NoProducts from "./ProductList/NoProducts/NoProducts";
 import { BodyContainer, NewProductButton } from "./styles.js";
 
 function ProductListPage() {
+  //Componente principal da página de lista de Produtos
+
+  //inicialização de hooks
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const status = useSelector(selectStatus);
+
+  //obtenção da lista de produtos
   const productList = useSelector(selectAllProducts);
 
+  //efeito para inicialização do store redux
   useEffect(() => {
     if (status === "idle") {
       dispatch(fetchProducts());
     }
   }, [dispatch, status]);
 
+  //Callback para navegação para a página de adição de produtos
   const handleAddProduct = () => navigate("/addProduct");
+
+  //Callback para repopular o store redux quando uma busca por realizada
   const handleSearch = (searchTerm) => dispatch(fetchProducts(searchTerm));
 
   return (
@@ -34,6 +43,7 @@ function ProductListPage() {
       <NewProductButton onClick={handleAddProduct}>
         Cadastrar Produto
       </NewProductButton>
+      {/*Navegação condicional conforme o status da requisição ao backend*/}
       {status === "pending" && <Loading />}
       {status === "fulfilled" && productList.length === 0 && <NoProducts />}
       {status === "fulfilled" && <ProductList products={productList} />}

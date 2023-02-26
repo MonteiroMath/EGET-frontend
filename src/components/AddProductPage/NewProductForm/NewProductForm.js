@@ -6,6 +6,11 @@ import { StyledForm, ButtonContainer } from "./styles";
 import { StyledButton } from "../../Shared/Buttons/StyledButton/styles";
 
 function NewProductForm({ product, handleReturn, handleSubmit }) {
+  //formulário para adição de produtos.
+
+  /*inicialização do estado do formulário.
+  //Strings vazias caso não tenha sido informado um produto (inclusão) ou
+  Valores do produto passado por props em caso de edição*/
   const [formState, setFormState] = useState({
     name: product ? product.name : "",
     category: product ? product.category : "",
@@ -15,6 +20,8 @@ function NewProductForm({ product, handleReturn, handleSubmit }) {
     image: product ? product.image : "",
   });
 
+  /*Inicialização dos estados de validação
+  Strings vazias em caso de adição de produto ou true em caso de edição de um produto*/
   const defaultValidationState = product ? true : "";
   const [validationState, setValidationState] = useState({
     name: defaultValidationState,
@@ -25,6 +32,7 @@ function NewProductForm({ product, handleReturn, handleSubmit }) {
     image: defaultValidationState,
   });
 
+  //funções para validação de cada campo do formulário.
   const validate = {
     name: (value) => validator.isAlphanumeric(value, "pt-BR", { ignore: " " }),
     category: (value) => validator.isAlpha(value, "pt-BR"),
@@ -34,6 +42,10 @@ function NewProductForm({ product, handleReturn, handleSubmit }) {
     image: (value) => validator.isURL(value),
   };
 
+  /*
+    Callback para alteração de campos do formulário
+    Atualiza o valor do campo do formulário, bem como seu estado de validação
+  */
   const handleFormChange = (key) => (event) => {
     const value = event.target.value;
 
@@ -45,6 +57,7 @@ function NewProductForm({ product, handleReturn, handleSubmit }) {
     });
   };
 
+  //Função para calcular se o botão de submissão deve ser ativado ou não
   const isButtonEnabled = useMemo(
     () =>
       validationState.name &&

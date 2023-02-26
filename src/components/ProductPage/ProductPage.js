@@ -21,6 +21,8 @@ import {
 } from "./styles";
 
 function ProductPage() {
+  //Componente para visualização de detalhes dos produtos.
+  //Contém botões para edição e para deletar o produto.
   const navigate = useNavigate();
   const dispatch = useDispatch();
 

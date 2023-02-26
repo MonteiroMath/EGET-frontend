@@ -14,6 +14,7 @@ import {
 } from "./styles";
 
 function HomePage() {
+  //Componente da página inicial - totalmente estático.
   return (
     <>
       <HeroHeader>

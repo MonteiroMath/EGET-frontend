@@ -21,6 +21,8 @@ import {
 } from "./styles";
 
 function ProductCard({ product }) {
+  //componente responsável pela renderização de um cartão de produtos
+  //contém callbacks para navegação para página de ver mais detalhes e de edição, bem como para a abertura de modal para deletar o produto específico
   const { id, name, category, price, image } = product;
 
   const navigate = useNavigate();
@@ -65,7 +67,7 @@ function ProductCard({ product }) {
       <Modal
         show={showModal}
         handleClose={handleShowModal}
-        content="Deseja excluir o produto? Não será possível reverter essa operação."
+        content={`Deseja excluir o produto?\n Não será possível reverter essa operação.`}
         handleConfirm={handleDelete}
       />
     </>

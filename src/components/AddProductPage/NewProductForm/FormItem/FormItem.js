@@ -9,6 +9,7 @@ function FormItem({
   errMsg,
   handleChange,
 }) {
+  //Componente para agrupamento de labels, campos de input e boxes de erro, permitindo a reutilização com redução de repetição do código
   return (
     <FormGroup>
       <label for={name}>{label}</label>
