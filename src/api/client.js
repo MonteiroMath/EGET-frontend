@@ -1,5 +1,6 @@
 export async function client(endpoint, method, body) {
-  const baseUrl = `http://localhost:5000`;
+  
+  const baseUrl = "http://159.89.178.109:8080";
   const headers = { "Content-Type": "application/json" };
   const mode = "cors";
 
