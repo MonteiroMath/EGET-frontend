@@ -2,13 +2,13 @@
 
 Esse projeto foi desenvolvido em resposta ao teste proposto pela empresa E-GET Desenvolvimento de Sistemas.
 
-O aplicativo faz uso de um backend construído em ExpressJS sobre um banco de dados MYSql, o qual pode ser encontrado [https://github.com/MonteiroMath/EGET-test-backend](neste repositório).
+O aplicativo faz uso de um backend construído em ExpressJS sobre um banco de dados MYSql, o qual pode ser encontrado [neste repositório](https://github.com/MonteiroMath/EGET-test-backend).
 
-O backend está sendo executando temporariamente em um droplet da DigitalOcean e pode ser acessado clicando [http://159.89.178.109:8080/](aqui). Caso o backend não funcione, é provável que ele tenha sido desativado após o resultado do teste.
+O backend está sendo executando temporariamente em um droplet da DigitalOcean e pode ser acessado clicando [aqui](http://159.89.178.109:8080). Caso o backend não funcione, é provável que ele tenha sido desativado após o resultado do teste.
 
 ## Instruções para rodar a aplicação
 
-A aplicação foi desenvolvida em ambiente Linux (Ubuntu 20), utilizando NodeJS versão 18. Se necessário, siga as instruções para instalação do [https://nodejs.org/en/](NodeJS). Você também deverá ter o [https://git-scm.com/book/en/v2/Getting-Started-Installing-Git](Git) instalado para seguir as instruções abaixo.
+A aplicação foi desenvolvida em ambiente Linux (Ubuntu 20), utilizando NodeJS versão 18. Se necessário, siga as instruções para instalação do [NodeJS](https://nodejs.org/en/). Você também deverá ter o [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) instalado para seguir as instruções abaixo.
 
 ### git clone
 
