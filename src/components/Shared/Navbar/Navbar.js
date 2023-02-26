@@ -3,8 +3,8 @@ import { NavContainer, NavLink } from "./styles";
 function Navbar() {
   return (
     <NavContainer>
-      <NavLink to="/">Home</NavLink>
-      <NavLink to="/products">Products</NavLink>
+      <NavLink to="/">Início</NavLink>
+      <NavLink to="/products">Produtos</NavLink>
     </NavContainer>
   );
 }

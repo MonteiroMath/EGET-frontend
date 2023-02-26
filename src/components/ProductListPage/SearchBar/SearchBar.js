@@ -54,11 +54,8 @@ function SearchBar() {
   const [searchTerm, setSearchTerm] = useState("");
   const [showModal, setShowModal] = useState("");
 
-  const handleShowModal = useCallback(
-    () => setShowModal(!showModal),
-    [showModal]
-  );
-  const handleChange = useCallback((ev) => setSearchTerm(ev.target.value));
+  const toggleModal = useCallback(() => setShowModal(!showModal), [showModal]);
+  const handleChange = (ev) => setSearchTerm(ev.target.value);
 
   const handleSubmit = useCallback(
     (ev) => {
@@ -70,7 +67,7 @@ function SearchBar() {
         navigate(`/products?${query}`);
       }
     },
-    [searchTerm]
+    [navigate, searchTerm]
   );
 
   return (
@@ -84,11 +81,11 @@ function SearchBar() {
             onKeyDown={handleSubmit}
           />
         </StyledForm>
-        <HelpButton onClick={handleShowModal}>?</HelpButton>
+        <HelpButton onClick={toggleModal}>?</HelpButton>
       </Container>
       <Modal
         show={showModal}
-        handleClose={handleShowModal}
+        handleClose={toggleModal}
         content={modalContent}
       />
     </>

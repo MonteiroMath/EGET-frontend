@@ -8,8 +8,6 @@ export const StyledForm = styled.form`
   background: rgba(0, 0, 0, 0.5);
 `;
 
-
-
 export const ButtonContainer = styled.div`
   margin-top: 30px;
   display: flex;

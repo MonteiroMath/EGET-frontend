@@ -1,4 +1,4 @@
-import { useEffect, useCallback } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import {
@@ -25,17 +25,17 @@ function ProductListPage() {
   //extract effect as custom hook
   useEffect(() => {
     dispatch(fetchProducts(searchTerm));
-  }, [searchTerm]);
+  }, [dispatch, searchTerm]);
 
-  const handleAddProduct = useCallback(() => navigate("/addProduct"));
+  const handleAddProduct = () => navigate("/addProduct");
 
   return (
     <BodyContainer>
       <SearchBar />
       <StyledButton onClick={handleAddProduct}>Cadastrar Produto</StyledButton>
-      {status == "pending" && <Loading />}
-      {status == "fulfilled" && productList.length == 0 && <NoProducts />}
-      {status == "fulfilled" && <ProductList products={productList} />}
+      {status === "pending" && <Loading />}
+      {status === "fulfilled" && productList.length === 0 && <NoProducts />}
+      {status === "fulfilled" && <ProductList products={productList} />}
     </BodyContainer>
   );
 }

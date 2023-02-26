@@ -26,10 +26,16 @@ function ProductCard({ product }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const handleSeeMore = useCallback(() => navigate(`/products/${id}`));
-  const handleEdit = useCallback(() => navigate(`/edit/${id}`));
-  const handleDelete = useCallback(() => dispatch(deleteProduct({ id })));
-  const handleShowModal = useCallback(() => setShowModal(!showModal));
+  const handleSeeMore = useCallback(
+    () => navigate(`/products/${id}`),
+    [navigate, id]
+  );
+  const handleEdit = useCallback(() => navigate(`/edit/${id}`), [navigate, id]);
+  const handleDelete = useCallback(
+    () => dispatch(deleteProduct({ id })),
+    [dispatch, id]
+  );
+  const handleShowModal = () => setShowModal(!showModal);
 
   const [showModal, setShowModal] = useState(false);
 

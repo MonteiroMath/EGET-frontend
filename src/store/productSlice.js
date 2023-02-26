@@ -96,7 +96,9 @@ const productsSlice = createSlice({
       .addCase(deleteProduct.fulfilled, (state, action) => {
         const { productId } = action.payload;
 
-        state.data = state.data.filter((product) => product.id != productId);
+        state.data = state.data.filter(
+          (product) => product.id !== parseInt(productId)
+        );
       })
       .addMatcher(isActionRejected, (state, action) => {
         console.log(action.error.message);
