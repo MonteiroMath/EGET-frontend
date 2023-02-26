@@ -1,12 +1,5 @@
 import { useState, useCallback, useMemo } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
 import validator from "validator";
-import {
-  postProduct,
-  updateProduct,
-  selectProductById,
-} from "../../../store/productSlice";
 
 import {
   StyledForm,
@@ -17,17 +10,7 @@ import {
   ErrorContainer,
 } from "./styles";
 
-function NewProductForm({ edit }) {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const params = useParams();
-
-  const { id } = params;
-
-  const product = useSelector((state) =>
-    selectProductById(state, parseInt(id))
-  );
-
+function NewProductForm({ product, handleReturn, handleSubmit }) {
   const defaultValidationState = product ? true : "";
 
   const [formState, setFormState] = useState({
@@ -47,8 +30,6 @@ function NewProductForm({ edit }) {
     description: defaultValidationState,
     image: defaultValidationState,
   });
-
-  const action = edit ? updateProduct : postProduct;
 
   const validate = {
     name: (value) => validator.isAlphanumeric(value, "pt-BR", { ignore: " " }),
@@ -81,27 +62,6 @@ function NewProductForm({ edit }) {
       validationState.image,
     [validationState]
   );
-
-  const handleReturn = (event) => {
-    event.preventDefault();
-    navigate("/products");
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    dispatch(
-      action({
-        id,
-        name: formState.name,
-        category: formState.category,
-        description: formState.description,
-        price: parseFloat(formState.price),
-        quantity: parseInt(formState.quantity),
-        image: formState.image,
-      })
-    ).then(() => navigate("/products"));
-  };
 
   return (
     <StyledForm>
@@ -197,8 +157,11 @@ function NewProductForm({ edit }) {
       </FormGroup>
       <ButtonContainer>
         <StyledButton onClick={handleReturn}>Cancelar</StyledButton>
-        <StyledButton disabled={!isButtonEnabled} onClick={handleSubmit}>
-          Confirmar
+        <StyledButton
+          disabled={!isButtonEnabled}
+          onClick={(ev) => handleSubmit(ev, formState)}
+        >
+          Enviar
         </StyledButton>
       </ButtonContainer>
     </StyledForm>

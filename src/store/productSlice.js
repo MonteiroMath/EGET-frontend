@@ -22,8 +22,8 @@ export const postProduct = createAsyncThunk("products/post", async (params) => {
     name,
     category,
     description,
-    price,
-    quantity,
+    price: parseFloat(price),
+    quantity: parseInt(quantity),
     image,
   });
 
@@ -114,7 +114,6 @@ export const actions = productsSlice.actions;
 export const selectProductById = (state, id) =>
   state.products.data.find((product) => product.id === id);
 export const selectAllProducts = (state) => {
-  console.log(state.products.data);
   return [...state.products.data];
 };
 export const selectStatus = (state) => {
