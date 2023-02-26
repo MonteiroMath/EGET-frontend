@@ -130,6 +130,8 @@ Não foram implementados testes usando Enzyme em razão de incomptabilidade com 
 
 No entanto, como demonstração, foram implementados testes utilizando JEST e react-testing-library nos arquivos [ProductListPage.test.js](https://github.com/MonteiroMath/EGET-frontend/blob/master/src/components/ProductListPage/ProductListPage.test.js) e [AddProductPage.test.js](https://github.com/MonteiroMath/EGET-frontend/blob/master/src/components/AddProductPage/AddProductPage.test.js).
 
+Embora a cobertura de testes tenha sido baixa, buscou-se ao menos exemplificar a construção de testes no contexto da aplicação.
+
 ### - Hospedagem na nuvem
 
 Tanto o backend quanto o backend foram hospedados (temporariamente) em droplets da DigitalOcean, conforme links: [backend](http://159.89.178.109:8080) e [frontend](adicionar link)

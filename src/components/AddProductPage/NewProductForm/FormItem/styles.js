@@ -34,6 +34,8 @@ export const StyledInput = styled.input`
 `;
 
 export const ErrorContainer = styled.div`
+  padding: 10px;
   color: red;
+  font-weight: bold;
   grid-column-end: span 2;
 `;
