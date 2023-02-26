@@ -1,18 +1,10 @@
 import { useState, useCallback, useMemo } from "react";
 import validator from "validator";
 
-import {
-  StyledForm,
-  FormGroup,
-  StyledInput,
-  ButtonContainer,
-  StyledButton,
-  ErrorContainer,
-} from "./styles";
+import FormItem from "./FormItem/FormItem";
+import { StyledForm, ButtonContainer, StyledButton } from "./styles";
 
 function NewProductForm({ product, handleReturn, handleSubmit }) {
-  const defaultValidationState = product ? true : "";
-
   const [formState, setFormState] = useState({
     name: product ? product.name : "",
     category: product ? product.category : "",
@@ -22,6 +14,7 @@ function NewProductForm({ product, handleReturn, handleSubmit }) {
     image: product ? product.image : "",
   });
 
+  const defaultValidationState = product ? true : "";
   const [validationState, setValidationState] = useState({
     name: defaultValidationState,
     category: defaultValidationState,
@@ -46,7 +39,6 @@ function NewProductForm({ product, handleReturn, handleSubmit }) {
     setFormState((prev) => {
       return { ...prev, [key]: value };
     });
-
     setValidationState((prev) => {
       return { ...prev, [key]: validate[key](value) };
     });
@@ -65,96 +57,61 @@ function NewProductForm({ product, handleReturn, handleSubmit }) {
 
   return (
     <StyledForm>
-      <FormGroup>
-        <label for="name">Nome*:</label>
-        <StyledInput
-          id="name"
-          name="name"
-          placeholder="Ex: Moto G"
-          value={formState.name}
-          onChange={useCallback(handleFormChange("name"))}
-        />
-        {validationState.name === false && (
-          <ErrorContainer>
-            O nome não deve conter caracteres especiais
-          </ErrorContainer>
-        )}
-      </FormGroup>
+      <FormItem
+        name="name"
+        label="Nome*:"
+        placeholder="Ex: Moto G"
+        value={formState.name}
+        valid={validationState.name === false}
+        errMsg="O nome não deve conter caracteres especiais"
+        handleChange={handleFormChange("name")}
+      />
+      <FormItem
+        name="category"
+        label="Categoria*:"
+        placeholder="Ex: celulares"
+        value={formState.category}
+        valid={validationState.category === false}
+        errMsg="A categoria não deve conter caracteres especiais ou números"
+        handleChange={handleFormChange("category")}
+      />
+      <FormItem
+        name="price"
+        label="Preço*:"
+        placeholder="Ex: 59.99"
+        value={formState.price}
+        valid={validationState.price === false}
+        errMsg="O preço deve ser um decimal (com duas casas) positivo, com separador '.'"
+        handleChange={handleFormChange("price")}
+      />
+      <FormItem
+        name="quantity"
+        label="Quantidade*:"
+        placeholder="Ex: 300"
+        value={formState.quantity}
+        valid={validationState.quantity === false}
+        errMsg="A quantidade deve ser um número inteiro positivo"
+        handleChange={handleFormChange("quantity")}
+      />
+      <FormItem
+        name="description"
+        label="Descrição*:"
+        placeholder="Informações extras"
+        value={formState.description}
+        valid={validationState.description === false}
+        errMsg="É obrigatório inserir uma descrição."
+        handleChange={handleFormChange("description")}
+      />
+      <FormItem
+        name="image"
+        label="Imagem*:"
+        placeholder="Ex: https://www.google.com/img.png"
+        value={formState.image}
+        valid={validationState.image === false}
+        errMsg="É necessário informar uma URL válida."
+        handleChange={handleFormChange("image")}
+      />
 
-      <FormGroup>
-        <label for="category">Categoria*:</label>
-        <StyledInput
-          id="category"
-          name="category"
-          placeholder="Ex: celulares"
-          value={formState.category}
-          onChange={useCallback(handleFormChange("category"))}
-        />
-        {validationState.category === false && (
-          <ErrorContainer>
-            A categoria não deve conter caracteres especiais ou números
-          </ErrorContainer>
-        )}
-      </FormGroup>
-
-      <FormGroup>
-        <label for="price">Preço*:</label>
-        <StyledInput
-          id="price"
-          name="price"
-          placeholder="Ex: 59.99"
-          value={formState.price}
-          onChange={useCallback(handleFormChange("price"))}
-        />
-        {validationState.price === false && (
-          <ErrorContainer>
-            O preço deve ser um decimal (com duas casas) positivo
-          </ErrorContainer>
-        )}
-      </FormGroup>
-      <FormGroup>
-        <label for="quantity">Quantidade*:</label>
-        <StyledInput
-          id="quantity"
-          name="quantity"
-          placeholder="Ex: 300"
-          value={formState.quantity}
-          onChange={useCallback(handleFormChange("quantity"))}
-        />
-        {validationState.quantity === false && (
-          <ErrorContainer>
-            A quantidade deve ser um número positivo
-          </ErrorContainer>
-        )}
-      </FormGroup>
-      <FormGroup>
-        <label for="description">Descrição*:</label>
-        <StyledInput
-          type="text"
-          id="description"
-          name="description"
-          placeholder="Informações extras"
-          value={formState.description}
-          onChange={useCallback(handleFormChange("description"))}
-        />
-        {validationState.description === false && (
-          <ErrorContainer>É obrigatório inserir uma descrição</ErrorContainer>
-        )}
-      </FormGroup>
-      <FormGroup>
-        <label for="image">Imagem*:</label>
-        <StyledInput
-          type="url"
-          id="image"
-          name="image"
-          placeholder="Ex: https://www.google.com/img.png"
-          value={formState.image}
-          onChange={useCallback(handleFormChange("image"))}
-        />
-        {validationState.image === false && (
-          <ErrorContainer>É necessário informar uma URL válida</ErrorContainer>
-        )}
-      </FormGroup>
       <ButtonContainer>
         <StyledButton onClick={handleReturn}>Cancelar</StyledButton>
         <StyledButton

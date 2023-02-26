@@ -26,13 +26,13 @@ function AddProductPage({ edit }) {
     navigate("/products");
   };
 
-  const handleSubmit = (event, state) => {
+  const handleSubmit = (event, formState) => {
     event.preventDefault();
 
     dispatch(
       action({
         id,
-        ...state,
+        ...formState,
       })
     ).then(() => navigate("/products"));
   };
