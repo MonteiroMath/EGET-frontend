@@ -5,9 +5,9 @@ import { Container, StyledForm, StyledInput, HelpButton } from "./styles";
 import SearchInstructionModal from "./SearchInstructionsModal/SearchInstructionsModal";
 import parseQuery from "./utils/parseQuery";
 
-function SearchBar() {
+function SearchBar({ handleSearch }) {
   const navigate = useNavigate();
-  
+
   const [searchTerm, setSearchTerm] = useState("");
   const [showModal, setShowModal] = useState(false);
 
@@ -21,10 +21,11 @@ function SearchBar() {
         ev.stopPropagation();
 
         const query = parseQuery(searchTerm);
-        navigate(`/products?${query}`);
+
+        handleSearch(query).then(navigate(`/products?${query}`));
       }
     },
-    [navigate, searchTerm]
+    [navigate, searchTerm, handleSearch]
   );
 
   return (

@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
   fetchProducts,
   selectAllProducts,
@@ -19,18 +19,18 @@ function ProductListPage() {
   const status = useSelector(selectStatus);
   const productList = useSelector(selectAllProducts);
 
-  const [searchParams] = useSearchParams();
-  const searchTerm = searchParams.toString();
-
   useEffect(() => {
-    dispatch(fetchProducts(searchTerm));
-  }, [dispatch, searchTerm]);
+    if (status === "idle") {
+      dispatch(fetchProducts());
+    }
+  }, [dispatch, status]);
 
   const handleAddProduct = () => navigate("/addProduct");
+  const handleSearch = (searchTerm) => dispatch(fetchProducts(searchTerm));
 
   return (
     <BodyContainer>
-      <SearchBar />
+      <SearchBar handleSearch={handleSearch} />
       <NewProductButton onClick={handleAddProduct}>
         Cadastrar Produto
       </NewProductButton>
