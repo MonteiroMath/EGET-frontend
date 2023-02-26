@@ -3,10 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   postProduct,
   updateProduct,
+  selectStatus,
   selectProductById,
 } from "../../store/productSlice";
 import { useNavigate, useParams } from "react-router-dom";
 
+import Loading from "../Shared/Loading/Loading";
 import NewProductForm from "./NewProductForm/NewProductForm";
 
 function AddProductPage({ edit }) {
@@ -17,6 +19,7 @@ function AddProductPage({ edit }) {
   const { id } = params;
   const action = edit ? updateProduct : postProduct;
 
+  const status = useSelector(selectStatus);
   const product = useSelector((state) =>
     selectProductById(state, parseInt(id))
   );
@@ -37,7 +40,9 @@ function AddProductPage({ edit }) {
     ).then(() => navigate("/products"));
   };
 
-  return (
+  return status === "pending" ? (
+    <Loading marginTop={"150px"} />
+  ) : (
     <BodyContainer>
       <Title>{edit ? "Editar Produto" : "Cadastrar Produto"}</Title>
       <NewProductForm

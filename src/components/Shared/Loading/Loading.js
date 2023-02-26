@@ -1,8 +1,8 @@
 import { Container, Spinner } from "./styles";
 
-function Loading() {
+function Loading({ marginTop }) {
   return (
-    <Container>
+    <Container marginTop={marginTop}>
       <Spinner />{" "}
     </Container>
   );

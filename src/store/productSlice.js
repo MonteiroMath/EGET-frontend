@@ -80,9 +80,16 @@ const productsSlice = createSlice({
         state.status = "rejected";
         state.error = action.error.message;
       })
+      .addCase(postProduct.pending, (state, action) => {
+        state.status = "pending";
+      })
       .addCase(postProduct.fulfilled, (state, action) => {
+        state.status = "fulfilled";
         const { product } = action.payload;
         state.data.unshift(product);
+      })
+      .addCase(updateProduct.pending, (state, action) => {
+        state.status = "pending";
       })
       .addCase(updateProduct.fulfilled, (state, action) => {
         const { product } = action.payload;
