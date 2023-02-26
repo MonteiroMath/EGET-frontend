@@ -1,6 +1,5 @@
 import { Container } from "./styles.js";
 import ProductCard from "./ProductCard/ProductCard";
-import NoProducts from "./NoProducts/NoProducts.js";
 
 function ProductList({ products }) {
   const productItems = products.map((product) => (

@@ -8,7 +8,7 @@ export const Container = styled.div`
 
   padding: 30px 0;
 
-  border-bottom: 2px solid #eee;
+  border-bottom: 2px solid #000033;
   margin-bottom: 30px;
 `;
 
@@ -34,7 +34,7 @@ export const StyledInput = styled.input`
   height: 20px;
   padding: 5px;
   border-radius: 5px;
-  border: solid 2px #eee;
+  border: solid 2px #000033;
 `;
 
 export const HelpButton = styled.button`
@@ -42,7 +42,7 @@ export const HelpButton = styled.button`
   border-radius: 100%;
   width: 30px;
   height: 30px;
-  background-color: #80669d;
+  background-color: #1D1D61;
   cursor: pointer;
   color: white;
   font-weight: bold;

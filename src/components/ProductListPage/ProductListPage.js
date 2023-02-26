@@ -11,7 +11,7 @@ import Loading from "../Shared/Loading/Loading";
 import ProductList from "./ProductList/ProductList";
 import NoProducts from "./ProductList/NoProducts/NoProducts";
 
-import { BodyContainer, StyledButton } from "./styles.js";
+import { BodyContainer, NewProductButton } from "./styles.js";
 
 function ProductListPage() {
   const dispatch = useDispatch();
@@ -22,7 +22,6 @@ function ProductListPage() {
   const [searchParams] = useSearchParams();
   const searchTerm = searchParams.toString();
 
-  //extract effect as custom hook
   useEffect(() => {
     dispatch(fetchProducts(searchTerm));
   }, [dispatch, searchTerm]);
@@ -32,7 +31,9 @@ function ProductListPage() {
   return (
     <BodyContainer>
       <SearchBar />
-      <StyledButton onClick={handleAddProduct}>Cadastrar Produto</StyledButton>
+      <NewProductButton onClick={handleAddProduct}>
+        Cadastrar Produto
+      </NewProductButton>
       {status === "pending" && <Loading />}
       {status === "fulfilled" && productList.length === 0 && <NoProducts />}
       {status === "fulfilled" && <ProductList products={productList} />}

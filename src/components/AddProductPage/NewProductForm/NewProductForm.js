@@ -2,7 +2,8 @@ import { useState, useMemo } from "react";
 import validator from "validator";
 
 import FormItem from "./FormItem/FormItem";
-import { StyledForm, ButtonContainer, StyledButton } from "./styles";
+import { StyledForm, ButtonContainer } from "./styles";
+import { StyledButton } from "../../Shared/Buttons/StyledButton/styles";
 
 function NewProductForm({ product, handleReturn, handleSubmit }) {
   const [formState, setFormState] = useState({

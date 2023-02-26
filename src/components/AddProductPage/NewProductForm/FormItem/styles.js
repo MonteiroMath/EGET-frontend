@@ -10,6 +10,8 @@ export const FormGroup = styled.div`
   align-items: center;
   gap: 5px;
 
+  color: white;
+
   @media screen and (min-width: 576px) {
     width: 80%;
     grid-template-columns: 1fr 1fr;

@@ -17,7 +17,7 @@ export const ModalBody = styled.div`
 
   border-radius: 15px;
   overflow: hidden;
-  background-color: #c39cf0;
+  background-color: #eee;
 `;
 
 export const ModalContent = styled.div`
@@ -25,8 +25,7 @@ export const ModalContent = styled.div`
 
   font-weight: bold;
 
-  border-top: 1px solid #eee;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #000033;
   white-space: pre-line;
 `;
 
@@ -36,14 +35,4 @@ export const ModalFooter = styled.div`
   display: flex;
   justify-content: center;
   gap: 20px;
-`;
-
-export const StyledButton = styled.button`
-  border: none;
-  border-radius: 8px;
-  padding: 10px;
-  background-color: ${(props) => (props.disabled ? "grey" : "#55c2da")};
-  cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
-  color: white;
-  font-weight: bold;
 `;

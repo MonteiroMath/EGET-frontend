@@ -38,9 +38,11 @@ function ProductPage() {
   const [showModal, setShowModal] = useState(false);
 
   const handleEdit = useCallback(() => navigate(`/edit/${id}`), [navigate, id]);
+
   const handleDelete = useCallback(() => {
     dispatch(deleteProduct({ id }));
   }, [dispatch, id]);
+
   const handleShowModal = useCallback(
     () => setShowModal(!showModal),
     [showModal]

@@ -1,10 +1,6 @@
-import {
-  ModalBody,
-  ModalContainer,
-  ModalContent,
-  ModalFooter,
-  StyledButton,
-} from "./styles";
+import { ModalBody, ModalContainer, ModalContent, ModalFooter } from "./styles";
+
+import { StyledButton } from "../Buttons/StyledButton/styles";
 
 function Modal({ show, handleClose, content, handleConfirm }) {
   return show ? (

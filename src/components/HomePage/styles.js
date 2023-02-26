@@ -56,7 +56,7 @@ export const HeaderSubtitle = styled(HeaderContainer)`
 export const BodyContainer = styled.main`
   padding: 8vh 5vw 8vh 5vw;
 
-  color: white;
+  color: #000033;
 `;
 
 export const InfoCard = styled.section`

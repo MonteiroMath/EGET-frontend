@@ -4,15 +4,15 @@ export const CardContainer = styled.div`
   min-height: 125px;
   width: 90%;
 
-  padding: 10px 15px;
+  padding: 25px 15px;
 
   display: flex;
   justify-content: space-around;
   column-gap: 15px;
 
-  background-color: #ba8902;
+  background-color: rgba(0, 0, 0, 0.6);
   color: white;
-  border: solid 1px #eee;
+  border: solid 1px #000033;
   border-radius: 10px;
 
   @media screen and (min-width: 992px) {
@@ -63,7 +63,7 @@ export const CategoryTag = styled.div`
 
   margin: 5px auto 15px auto;
 
-  background-color: #6E5922;
+  background-color: rgba(0, 0, 0, 0.5);
 
   @media screen and (min-width: 768px) {
     margin-left: 0;
