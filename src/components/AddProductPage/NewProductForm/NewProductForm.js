@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import validator from "validator";
@@ -20,33 +20,33 @@ import {
 function NewProductForm({ edit }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
   const params = useParams();
+
   const { id } = params;
 
   const product = useSelector((state) =>
     selectProductById(state, parseInt(id))
   );
 
-  const defaultState = edit
-    ? {
-        name: { value: product.name, valid: true },
-        category: { value: product.category, valid: true },
-        price: { value: product.price, valid: true },
-        quantity: { value: product.quantity, valid: true },
-        description: { value: product.description, valid: true },
-        image: { value: product.image, valid: true },
-      }
-    : {
-        name: { value: "", valid: "" },
-        category: { value: "", valid: "" },
-        price: { value: "", valid: "" },
-        quantity: { value: "", valid: "" },
-        description: { value: "", valid: "" },
-        image: { value: "", valid: "" },
-      };
+  const defaultValidationState = product ? true : "";
 
-  const [formState, setFormState] = useState(defaultState);
+  const [formState, setFormState] = useState({
+    name: product ? product.name : "",
+    category: product ? product.category : "",
+    price: product ? product.price : "",
+    quantity: product ? product.quantity : "",
+    description: product ? product.description : "",
+    image: product ? product.image : "",
+  });
+
+  const [validationState, setValidationState] = useState({
+    name: defaultValidationState,
+    category: defaultValidationState,
+    price: defaultValidationState,
+    quantity: defaultValidationState,
+    description: defaultValidationState,
+    image: defaultValidationState,
+  });
 
   const action = edit ? updateProduct : postProduct;
 
@@ -59,44 +59,49 @@ function NewProductForm({ edit }) {
     image: (value) => validator.isURL(value),
   };
 
-  const handleFormChange = useCallback((key) => (event) => {
+  const handleFormChange = (key) => (event) => {
     const value = event.target.value;
 
     setFormState((prev) => {
-      return { ...prev, [key]: { value, valid: validate[key](value) } };
+      return { ...prev, [key]: value };
     });
-  });
 
-  const isButtonEnabled = useCallback(
+    setValidationState((prev) => {
+      return { ...prev, [key]: validate[key](value) };
+    });
+  };
+
+  const isButtonEnabled = useMemo(
     () =>
-      formState.name.valid &&
-      formState.category.valid &&
-      formState.price.valid &&
-      formState.quantity.valid &&
-      formState.description.valid &&
-      formState.image.valid
+      validationState.name &&
+      validationState.category &&
+      validationState.price &&
+      validationState.quantity &&
+      validationState.description &&
+      validationState.image,
+    [validationState]
   );
 
-  const handleReturn = useCallback((event) => {
+  const handleReturn = (event) => {
     event.preventDefault();
     navigate("/products");
-  });
+  };
 
-  const handleSubmit = useCallback((event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
 
     dispatch(
       action({
         id,
-        name: formState.name.value,
-        category: formState.category.value,
-        description: formState.description.value,
-        price: parseFloat(formState.price.value),
-        quantity: parseInt(formState.quantity.value),
-        image: formState.image.value,
+        name: formState.name,
+        category: formState.category,
+        description: formState.description,
+        price: parseFloat(formState.price),
+        quantity: parseInt(formState.quantity),
+        image: formState.image,
       })
     ).then(() => navigate("/products"));
-  });
+  };
 
   return (
     <StyledForm>
@@ -106,10 +111,10 @@ function NewProductForm({ edit }) {
           id="name"
           name="name"
           placeholder="Ex: Moto G"
-          value={formState.name.value}
+          value={formState.name}
           onChange={useCallback(handleFormChange("name"))}
         />
-        {formState.name.valid === false && (
+        {validationState.name === false && (
           <ErrorContainer>
             O nome não deve conter caracteres especiais
           </ErrorContainer>
@@ -122,10 +127,10 @@ function NewProductForm({ edit }) {
           id="category"
           name="category"
           placeholder="Ex: celulares"
-          value={formState.category.value}
+          value={formState.category}
           onChange={useCallback(handleFormChange("category"))}
         />
-        {formState.category.valid === false && (
+        {validationState.category === false && (
           <ErrorContainer>
             A categoria não deve conter caracteres especiais ou números
           </ErrorContainer>
@@ -138,10 +143,10 @@ function NewProductForm({ edit }) {
           id="price"
           name="price"
           placeholder="Ex: 59.99"
-          value={formState.price.value}
+          value={formState.price}
           onChange={useCallback(handleFormChange("price"))}
         />
-        {formState.price.valid === false && (
+        {validationState.price === false && (
           <ErrorContainer>
             O preço deve ser um decimal (com duas casas) positivo
           </ErrorContainer>
@@ -153,10 +158,10 @@ function NewProductForm({ edit }) {
           id="quantity"
           name="quantity"
           placeholder="Ex: 300"
-          value={formState.quantity.value}
+          value={formState.quantity}
           onChange={useCallback(handleFormChange("quantity"))}
         />
-        {formState.quantity.valid === false && (
+        {validationState.quantity === false && (
           <ErrorContainer>
             A quantidade deve ser um número positivo
           </ErrorContainer>
@@ -169,10 +174,10 @@ function NewProductForm({ edit }) {
           id="description"
           name="description"
           placeholder="Informações extras"
-          value={formState.description.value}
+          value={formState.description}
           onChange={useCallback(handleFormChange("description"))}
         />
-        {formState.description.valid === false && (
+        {validationState.description === false && (
           <ErrorContainer>É obrigatório inserir uma descrição</ErrorContainer>
         )}
       </FormGroup>
@@ -183,16 +188,16 @@ function NewProductForm({ edit }) {
           id="image"
           name="image"
           placeholder="Ex: https://www.google.com/img.png"
-          value={formState.image.value}
+          value={formState.image}
           onChange={useCallback(handleFormChange("image"))}
         />
-        {formState.image.valid === false && (
+        {validationState.image === false && (
           <ErrorContainer>É necessário informar uma URL válida</ErrorContainer>
         )}
       </FormGroup>
       <ButtonContainer>
         <StyledButton onClick={handleReturn}>Cancelar</StyledButton>
-        <StyledButton disabled={!isButtonEnabled()} onClick={handleSubmit}>
+        <StyledButton disabled={!isButtonEnabled} onClick={handleSubmit}>
           Confirmar
         </StyledButton>
       </ButtonContainer>

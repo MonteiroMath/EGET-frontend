@@ -55,7 +55,7 @@ export const HeaderSubtitle = styled(HeaderContainer)`
 
 export const BodyContainer = styled.main`
   padding: 8vh 5vw 8vh 5vw;
-  background-color: #c39cf0;
+
   color: white;
 `;
 
