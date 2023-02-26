@@ -27,10 +27,15 @@ export const FormGroup = styled.div`
 `;
 
 export const StyledInput = styled.input`
+  width: 80%;
   height: 20px;
   padding: 5px;
   border-radius: 5px;
   border: solid 2px #eee;
+
+  @media screen and (min-width: 576px) {
+    width: 100%;
+  }
 `;
 
 export const ErrorContainer = styled.div`

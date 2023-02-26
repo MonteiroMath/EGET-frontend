@@ -94,6 +94,8 @@ const productsSlice = createSlice({
       .addCase(updateProduct.fulfilled, (state, action) => {
         const { product } = action.payload;
 
+        state.status = "fulfilled";
+
         let index = state.data.findIndex(
           (oldProduct) => oldProduct.id === product.id
         );
