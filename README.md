@@ -8,6 +8,8 @@ O backend está sendo executando temporariamente em um droplet da DigitalOcean e
 
 Quanto ao frontend, pode ser acessado clicando [aqui](http://159.89.178.109:9090). A hospedagem também está sendo feita em um droplet da DigitalOcean de forma temporária e será desativada dentro de alguns dias.
 
+Update(18/04/2023): os links acima foram desativados.
+
 ## Instruções para rodar a aplicação
 
 A aplicação foi desenvolvida em ambiente Linux (Ubuntu 20), utilizando NodeJS versão 18. Se necessário, siga as instruções para instalação do [NodeJS](https://nodejs.org/en/). Você também deverá ter o [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) instalado para seguir as instruções abaixo.
